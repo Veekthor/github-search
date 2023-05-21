@@ -1,8 +1,7 @@
 // TODO: RUN SEARCH IF URL IS LOADED WITH SEARCH TERM
 import { useContext, useState } from "react";
 import { SearchedContext } from "../context/SearchContext";
-import data from "../data";
-import { GitHubUser } from "../interfaces";
+import { IReturnedSearchCall } from "../interfaces";
 import {
   SearchActions,
   SearchContainer,
@@ -16,15 +15,20 @@ const Search: React.FC = () => {
   const { setResult, isLoading, setLoading } = useContext(SearchedContext);
   const [params, setParams] = useSearchParams();
 
-  const handleSearch = () => {
+  const runSearch = async (term: string, type:string): Promise<IReturnedSearchCall> => {
+    const url = `https://api.github.com/search/users?q=${term}+type:${type}`
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
+  };
+
+  const handleSearch = async () => {
     setLoading(true);
     setParams({ term: searchTerm, type: searchType });
-    console.log(params);
-    setTimeout(() => {
-      const fetchedData: GitHubUser[] = data.items;
-      setLoading(false);
-      setResult(fetchedData);
-    }, 3000);
+    const response = await runSearch(searchTerm, searchType);
+    setLoading(false);
+    const fetchedData = response.items;
+    setResult(fetchedData);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {

@@ -34,3 +34,9 @@ export interface GitHubUser {
 export interface IUserCardProps {
   user: GitHubUser;
 }
+
+export interface IReturnedSearchCall {
+  total_count: number;
+  incomplete_results: number;
+  items: GitHubUser[];
+}
