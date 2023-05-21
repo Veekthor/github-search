@@ -15,8 +15,11 @@ const Search: React.FC = () => {
   const { setResult, isLoading, setLoading } = useContext(SearchedContext);
   const [params, setParams] = useSearchParams();
 
-  const runSearch = async (term: string, type:string): Promise<IReturnedSearchCall> => {
-    const url = `https://api.github.com/search/users?q=${term}+type:${type}`
+  const runSearch = async (
+    term: string,
+    type: string,
+  ): Promise<IReturnedSearchCall> => {
+    const url = `https://api.github.com/search/users?q=${term}+type:${type}`;
     const res = await fetch(url);
     const data = await res.json();
     return data;
@@ -30,14 +33,14 @@ const Search: React.FC = () => {
   };
 
   useEffect(() => {
-    const term = params.get("term")
-    const type = params.get("type")
-    if(!term) return;
-    setTerm(term)
-    if(type) setType(type);
+    const term = params.get("term");
+    const type = params.get("type");
+    if (!term) return;
+    setTerm(term);
+    if (type) setType(type);
     setLoading(true);
     handleSearch(term, type || "user");
-  }, [])
+  }, []);
 
   const handleClick = async () => {
     setLoading(true);
@@ -82,7 +85,10 @@ const Search: React.FC = () => {
           />
           <label htmlFor="org">Org</label>
         </div>
-        <button onClick={handleClick} disabled={isLoading || !searchTerm.trim()}>
+        <button
+          onClick={handleClick}
+          disabled={isLoading || !searchTerm.trim()}
+        >
           Search
         </button>
       </SearchActions>

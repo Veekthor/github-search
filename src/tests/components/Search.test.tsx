@@ -65,22 +65,24 @@ describe("Search tests", () => {
     fetchMock.mockResponseOnce(JSON.stringify(responseBody));
     act(() => {
       renderSearchWithContext(false);
-    })
+    });
     expect(screen.getByText("Search")).toBeDisabled();
     const input = screen.getByTestId("search-input");
     act(() => {
       userEvent.type(input, "veek");
-    })
+    });
     expect(screen.getByText("Search")).not.toBeDisabled();
     act(() => {
       userEvent.click(screen.getByText("Search"));
-    })
+    });
 
     await waitFor(() => expect(setResult).toHaveBeenCalledTimes(1));
     expect(setLoading).toBeCalledTimes(2);
-    expect(fetch).toBeCalledWith('https://api.github.com/search/users?q=veek+type:user')
+    expect(fetch).toBeCalledWith(
+      "https://api.github.com/search/users?q=veek+type:user"
+    );
     expect(setResult).toBeCalledWith(responseBody.items);
-  })
+  });
 
   // TO DO: write test for api failures
 });

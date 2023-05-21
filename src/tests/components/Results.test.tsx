@@ -10,6 +10,7 @@ import { SearchedContext } from "../../context/SearchContext";
 import { GitHubUser } from "../../interfaces";
 import fetchedUsersObj from "../fixtures/data";
 
+// Got idea for using context this way from https://polvara.me/posts/mocking-context-with-react-testing-library
 const renderResultsWithContext = (result: GitHubUser[], isLoading: boolean) => {
   return render(
     <SearchedContext.Provider
