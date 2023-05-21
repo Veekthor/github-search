@@ -1,5 +1,5 @@
 // TODO: RUN SEARCH IF URL IS LOADED WITH SEARCH TERM
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SearchedContext } from "../context/SearchContext";
 import { IReturnedSearchCall } from "../interfaces";
 import {
@@ -22,13 +22,27 @@ const Search: React.FC = () => {
     return data;
   };
 
-  const handleSearch = async () => {
-    setLoading(true);
-    setParams({ term: searchTerm, type: searchType });
-    const response = await runSearch(searchTerm, searchType);
+  const handleSearch = async (term: string, type: string) => {
+    const response = await runSearch(term, type);
     setLoading(false);
     const fetchedData = response.items;
     setResult(fetchedData);
+  };
+
+  useEffect(() => {
+    const term = params.get("term")
+    const type = params.get("type")
+    if(!term) return;
+    setTerm(term)
+    if(type) setType(type);
+    setLoading(true);
+    handleSearch(term, type || "user");
+  }, [])
+
+  const handleClick = async () => {
+    setLoading(true);
+    setParams({ term: searchTerm, type: searchType });
+    handleSearch(searchTerm, searchType);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
@@ -68,7 +82,7 @@ const Search: React.FC = () => {
           />
           <label htmlFor="org">Org</label>
         </div>
-        <button onClick={handleSearch} disabled={isLoading || !searchTerm.trim()}>
+        <button onClick={handleClick} disabled={isLoading || !searchTerm.trim()}>
           Search
         </button>
       </SearchActions>
