@@ -1,4 +1,4 @@
-const data = {
+const fetchedUsersObj = {
   "total_count": 657,
   "incomplete_results": false,
   "items": [
@@ -635,4 +635,4 @@ const data = {
   ]
 }
 
-export default data;
+export default fetchedUsersObj;

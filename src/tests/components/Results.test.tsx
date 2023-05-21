@@ -1,14 +1,14 @@
 import renderer from "react-test-renderer";
-import Results from "../../../components/Results";
+import Results from "../../components/Results";
 import {
   getAllByTestId,
   getByTestId,
   render,
   screen,
 } from "@testing-library/react";
-import { SearchedContext } from "../../../context/SearchContext";
-import { GitHubUser } from "../../../interfaces";
-import data from "../../../data";
+import { SearchedContext } from "../../context/SearchContext";
+import { GitHubUser } from "../../interfaces";
+import fetchedUsersObj from "../fixtures/data";
 
 const renderResultsWithContext = (result: GitHubUser[], isLoading: boolean) => {
   return render(
@@ -44,7 +44,7 @@ describe("Results tests", () => {
   });
 
   it("should display results", () => {
-    result = data.items;
+    result = fetchedUsersObj.items;
     renderResultsWithContext(result, false);
     const elements = screen.getAllByTestId("user-card");
     expect(elements).toHaveLength(result.length);

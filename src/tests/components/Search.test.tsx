@@ -1,14 +1,15 @@
 import renderer from "react-test-renderer";
-import Search from "../../../components/Search";
+import Search from "../../components/Search";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
-import { act, render, screen } from "@testing-library/react";
-import { SearchedContext } from "../../../context/SearchContext";
+import { act, render, screen, waitFor } from "@testing-library/react";
+import { SearchedContext } from "../../context/SearchContext";
 import userEvent from "@testing-library/user-event";
+import fetchedUsersObj from "../fixtures/data";
 
 const setLoading = jest.fn();
 const setResult = jest.fn();
 
-// Got idea for using context this way for https://polvara.me/posts/mocking-context-with-react-testing-library
+// Got idea for using context this way from https://polvara.me/posts/mocking-context-with-react-testing-library
 const renderSearchWithContext = (isLoading: boolean) => {
   return render(
     <SearchedContext.Provider
@@ -58,7 +59,10 @@ describe("Search tests", () => {
     expect(screen.getByLabelText("Org")).not.toBeDisabled();
   });
 
-  it("should call set methods", () => {
+  it("should correctly make API call and set states", async () => {
+    fetchMock.resetMocks();
+    const responseBody = fetchedUsersObj;
+    fetchMock.mockResponseOnce(JSON.stringify(responseBody));
     act(() => {
       renderSearchWithContext(false);
     })
@@ -71,11 +75,12 @@ describe("Search tests", () => {
     act(() => {
       userEvent.click(screen.getByText("Search"));
     })
-    expect(setLoading).toBeCalledTimes(1);
-    // setTimeout(() => {
-    //   expect(setResult).toBeCalled();
-    //   expect(setLoading).toBeCalledTimes(2);
-    //   console.log("Hey");
-    // }, 3000)
+
+    await waitFor(() => expect(setResult).toHaveBeenCalledTimes(1));
+    expect(setLoading).toBeCalledTimes(2);
+    expect(fetch).toBeCalledWith('https://api.github.com/search/users?q=veek+type:user')
+    expect(setResult).toBeCalledWith(responseBody.items);
   })
+
+  // TO DO: write test for api failures
 });

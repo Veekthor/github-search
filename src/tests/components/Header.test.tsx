@@ -1,4 +1,4 @@
-import Header from "../../../components/Header";
+import Header from "../../components/Header";
 import renderer from "react-test-renderer";
 
 describe('Header tests', () => {
