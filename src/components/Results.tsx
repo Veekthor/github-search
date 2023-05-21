@@ -11,7 +11,7 @@ const Results: React.FC = () => {
     <StyledResults>
       {isLoading && (
         <p>
-          <BsFillGearFill className="rotate" />
+          <BsFillGearFill className="rotate" data-testid="loading-icon" />
         </p>
       )}
       {!isLoading &&

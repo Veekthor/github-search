@@ -4,7 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const UserCard: React.FC<IUserCardProps> = ({ user }) => {
   return (
-    <StyledUserCard>
+    <StyledUserCard data-testid="user-card">
       <div>
         <img
           src={user.avatar_url}

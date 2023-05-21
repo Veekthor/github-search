@@ -39,6 +39,7 @@ const Search: React.FC = () => {
         name="search"
         value={searchTerm}
         onChange={handleChange}
+        data-testid="search-input"
       />
       <SearchActions>
         <div>
@@ -63,7 +64,7 @@ const Search: React.FC = () => {
           />
           <label htmlFor="org">Org</label>
         </div>
-        <button onClick={handleSearch} disabled={isLoading}>
+        <button onClick={handleSearch} disabled={isLoading || !searchTerm.trim()}>
           Search
         </button>
       </SearchActions>

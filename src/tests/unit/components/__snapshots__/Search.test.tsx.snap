@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Search tests should match snapshot 1`] = `
+<div
+  className="sc-bgqQcB"
+>
+  <input
+    className="sc-gTRrQi iOqfRm"
+    data-testid="search-input"
+    name="search"
+    onChange={[Function]}
+    type="text"
+    value=""
+  />
+  <div
+    className="sc-ewnqHT hHjOXM"
+  >
+    <div>
+      <input
+        checked={true}
+        id="user"
+        name="searchType"
+        onChange={[Function]}
+        type="radio"
+        value="user"
+      />
+      <label
+        htmlFor="user"
+      >
+        User
+      </label>
+    </div>
+    <div>
+      <input
+        checked={false}
+        id="org"
+        name="searchType"
+        onChange={[Function]}
+        type="radio"
+        value="org"
+      />
+      <label
+        htmlFor="org"
+      >
+        Org
+      </label>
+    </div>
+    <button
+      disabled={true}
+      onClick={[Function]}
+    >
+      Search
+    </button>
+  </div>
+</div>
+`;

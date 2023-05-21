@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header tests should match snapshot 1`] = `
+<header
+  className="sc-bgqQcB eHMlzh"
+>
+  <img
+    alt="logo"
+    className="sc-gTRrQi eSyoMb"
+    src="github.svg"
+  />
+  Search Github
+</header>
+`;
