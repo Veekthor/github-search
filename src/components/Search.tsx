@@ -4,7 +4,6 @@ import { SearchedContext } from "../context/SearchContext";
 import { IReturnedSearchCall } from "../interfaces";
 import {
   SearchActions,
-  SearchContainer,
   SearchInput,
 } from "./styles/Search.styled";
 import { useSearchParams } from "react-router-dom";
@@ -54,13 +53,14 @@ const Search: React.FC = () => {
     if (name === "searchType") setType(value);
   };
   return (
-    <SearchContainer>
+    <section>
       <SearchInput
         type="text"
         name="search"
         value={searchTerm}
         onChange={handleChange}
         data-testid="search-input"
+        aria-label="Search"
       />
       <SearchActions>
         <div>
@@ -92,7 +92,7 @@ const Search: React.FC = () => {
           Search
         </button>
       </SearchActions>
-    </SearchContainer>
+    </section>
   );
 };
 

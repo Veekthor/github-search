@@ -1,11 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Search tests should match snapshot 1`] = `
-<div
-  className="sc-bgqQcB"
->
+<section>
   <input
-    className="sc-gTRrQi iOqfRm"
+    aria-label="Search"
+    className="sc-bgqQcB dLtZfJ"
     data-testid="search-input"
     name="search"
     onChange={[Function]}
@@ -13,7 +12,7 @@ exports[`Search tests should match snapshot 1`] = `
     value=""
   />
   <div
-    className="sc-ewnqHT hHjOXM"
+    className="sc-gTRrQi bvvEia"
   >
     <div>
       <input
@@ -52,5 +51,5 @@ exports[`Search tests should match snapshot 1`] = `
       Search
     </button>
   </div>
-</div>
+</section>
 `;

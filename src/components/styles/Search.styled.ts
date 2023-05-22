@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-export const SearchContainer = styled.div``;
-
 export const SearchInput = styled.input`
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
