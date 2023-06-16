@@ -30,6 +30,8 @@ export const StyledUserCard = styled.div`
   padding: 5px;
   box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
   transition: all 0.8s;
+  text-decoration: none;
+  color: var(--primary);
 
   &:hover {
     cursor: pointer;

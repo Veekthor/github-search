@@ -4,19 +4,21 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const UserCard: React.FC<IUserCardProps> = ({ user }) => {
   return (
-    <StyledUserCard data-testid="user-card">
-      <div>
-        <img
-          src={user.avatar_url}
-          alt={`${user.login}'s avatar`}
-          loading="lazy"
-        />
-      </div>
-      <div>
-        <p>{user.login}</p>
-        <IoIosArrowForward />
-      </div>
-    </StyledUserCard>
+    <a href={user.html_url} target="_blank">
+      <StyledUserCard data-testid="user-card">
+        <div>
+          <img
+            src={user.avatar_url}
+            alt={`${user.login}'s avatar`}
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <p>{user.login}</p>
+          <IoIosArrowForward />
+        </div>
+      </StyledUserCard>
+    </a>
   );
 };
 
