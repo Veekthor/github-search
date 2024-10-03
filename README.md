@@ -21,8 +21,8 @@ To run the project locally, follow these steps:
 3. Run `npm start` to start the development server.
 4. Open your browser and navigate to `http://localhost:3000` to view the application.
 
-<!-- ## Live Demo
-You can view a live demo [here](https://klasha-dash-test.netlify.app/) -->
+## Live Demo
+You can view a live demo [here](https://search-github-demo.netlify.app/)
 
 ## Contributing
 
