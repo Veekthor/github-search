@@ -4,7 +4,7 @@ import { IoIosArrowForward } from "react-icons/io";
 
 const UserCard: React.FC<IUserCardProps> = ({ user }) => {
   return (
-    <a href={user.html_url} target="_blank">
+    <a href={user.html_url} target="_blank" rel="noreferrer">
       <StyledUserCard data-testid="user-card">
         <div>
           <img

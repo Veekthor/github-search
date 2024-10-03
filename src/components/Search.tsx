@@ -4,6 +4,7 @@ import { SearchedContext } from "../context/SearchContext";
 import { IReturnedSearchCall } from "../interfaces";
 import {
   SearchActions,
+  SearchButton,
   SearchInput,
 } from "./styles/Search.styled";
 import { useSearchParams } from "react-router-dom";
@@ -39,6 +40,7 @@ const Search: React.FC = () => {
     if (type) setType(type);
     setLoading(true);
     handleSearch(term, type || "user");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleClick = async () => {
@@ -61,6 +63,7 @@ const Search: React.FC = () => {
         onChange={handleChange}
         data-testid="search-input"
         aria-label="Search"
+        placeholder="Enter search term"
       />
       <SearchActions>
         <div>
@@ -85,12 +88,12 @@ const Search: React.FC = () => {
           />
           <label htmlFor="org">Org</label>
         </div>
-        <button
+        <SearchButton
           onClick={handleClick}
-          disabled={isLoading || !searchTerm.trim()}
+          className={`${isLoading || !searchTerm.trim() ? "disabled" : ""}`}
         >
           Search
-        </button>
+        </SearchButton>
       </SearchActions>
     </section>
   );
